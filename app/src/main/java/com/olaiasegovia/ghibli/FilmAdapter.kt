@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.film_list_item.view.*
 
-class FilmAdapter(val films: ArrayList<String>, val context: ListFilmsActivity) : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
+class FilmAdapter(private val films: ArrayList<String>, private val context: ListFilmsActivity) : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvFilmName?.text = films.get(position)
+        holder.tvFilmName?.text = films[position]
     }
 
     override fun onCreateViewHolder(holder: ViewGroup, viewType: Int): ViewHolder{
@@ -20,7 +20,7 @@ class FilmAdapter(val films: ArrayList<String>, val context: ListFilmsActivity) 
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        val tvFilmName = view.tv_film_name
+        val tvFilmName = view.tv_film_name!!
     }
 
 }
