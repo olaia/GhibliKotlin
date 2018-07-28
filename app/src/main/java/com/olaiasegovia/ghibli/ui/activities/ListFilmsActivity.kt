@@ -1,9 +1,13 @@
-package com.olaiasegovia.ghibli
+package com.olaiasegovia.ghibli.data
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.olaiasegovia.ghibli.R
 import kotlinx.android.synthetic.main.activity_list_films.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
 
 class ListFilmsActivity : AppCompatActivity() {
 
@@ -15,9 +19,21 @@ class ListFilmsActivity : AppCompatActivity() {
 
         addFilms()
 
+        retrieveDataFromServer()
+
         rv_film_list.layoutManager = LinearLayoutManager(this)
 
         rv_film_list.adapter = FilmAdapter(films, this)
+    }
+
+    private fun retrieveDataFromServer() {
+
+        doAsync {
+            val result = FilmRequest().run()
+            uiThread{
+                longToast("FilmRequest performed")
+            }
+        }
     }
 
     private fun addFilms() {
@@ -30,4 +46,5 @@ class ListFilmsActivity : AppCompatActivity() {
         films.add("Whisper of the Heart")
         films.add("Princess Mononoke")
     }
+
 }
