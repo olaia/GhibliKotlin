@@ -29,7 +29,7 @@ class ListFilmsActivity : AppCompatActivity() {
     private fun retrieveDataFromServer() {
 
         doAsync {
-            val result = FilmRequest().run()
+            val result = FilmRequest().execute()
             uiThread{
                 longToast("FilmRequest performed")
             }
