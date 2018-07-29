@@ -1,5 +1,4 @@
-package domain
+package com.olaiasegovia.ghibli.domain.model
 
-import java.util.*
-
-data class FilmResponse  (val id: String, val title: String, val description: String, val director: String, val releaseDate: Date, val score: Int)
+data class FilmList(val list: List<Film>)
+data class Film(val title: String, val description: String, val director: String, val releaseYear: Int?)

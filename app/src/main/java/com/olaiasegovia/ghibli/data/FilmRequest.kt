@@ -1,17 +1,18 @@
 package com.olaiasegovia.ghibli.data
 
+import android.util.Log
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.net.URL
 
-class FilmRequest() {
+class FilmRequest {
 
     companion object {
-    private const val URL = "https://ghibliapi.herokuapp.com/filmsØ"
-
+        private const val URL = "https://ghibliapi.herokuapp.com/films"
     }
 
     fun execute(): FilmResponse {
         val filmsJsonStr = URL(URL).readText()
-        return Gson().fromJson(filmsJsonStr, FilmResponse::class.java)
+        return FilmResponse(Gson().fromJson(filmsJsonStr, object: TypeToken<List<Film>>() {}.type))
     }
 }
