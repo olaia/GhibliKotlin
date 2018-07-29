@@ -1,6 +1,5 @@
 package com.olaiasegovia.ghibli.data
 
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.net.URL
@@ -13,6 +12,6 @@ class FilmRequest {
 
     fun execute(): FilmResponse {
         val filmsJsonStr = URL(URL).readText()
-        return FilmResponse(Gson().fromJson(filmsJsonStr, object: TypeToken<List<Film>>() {}.type))
+        return FilmResponse(Gson().fromJson(filmsJsonStr, object : TypeToken<List<Film>>() {}.type))
     }
 }
